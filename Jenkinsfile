@@ -7,11 +7,10 @@ pipeline {
  }
  agent any
  stages {
- stage(‘Cloning Git’) {
- steps {
-   git([url: 'https://github.com/trapthy/codetest-javasb.git', branch: ‘main’])
- }
- } 
+   stage('Clone Repo') {
+      git 'https://github.com/trapthy/codetest-springboot.git'         
+      mvnHome = tool 'maven'
+    }   
  stage('Build Project') {
       // build project via maven
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
