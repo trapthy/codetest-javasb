@@ -9,10 +9,12 @@ pipeline {
  stages {
    stage('Clone Repo') {
     steps{
+     script{
       def mvnHome = tool 'maven'
       git 'https://github.com/trapthy/codetest-springboot.git'         
       mvnHome = tool 'maven'
     }   
+   }
    }
  stage('Build Project') {
       steps{
