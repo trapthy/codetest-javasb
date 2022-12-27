@@ -3,12 +3,13 @@ pipeline {
  imagename = "trapthyshetty/insead-demo"
  registryCredential = 'dockerhub'
  dockerImage = ''
- def mvnHome = tool 'maven'
+
  }
  agent any
  stages {
    stage('Clone Repo') {
     steps{
+      def mvnHome = tool 'maven'
       git 'https://github.com/trapthy/codetest-springboot.git'         
       mvnHome = tool 'maven'
     }   
