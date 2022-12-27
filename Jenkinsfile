@@ -16,7 +16,7 @@ pipeline {
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     }
  
- stage(‘Building image’) {
+ stage('Building image') {
    steps{
      script {
         dockerImage = docker.build imagename
