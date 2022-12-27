@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.docker.demo</groupId>
-	<artifactId>springBootDocker</artifactId>
+	<artifactId>insead-demo</artifactId>
 	<version>1.0.0</version>
 	<name>springBootDocker</name>
 	<description>Demo project for Spring Docker sample</description>
