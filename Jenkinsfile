@@ -15,7 +15,7 @@ pipeline {
       // build project via maven
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
     }
- }
+ 
  stage(‘Building image’) {
    steps{
      script {
