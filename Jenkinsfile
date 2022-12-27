@@ -9,9 +9,9 @@ pipeline {
  stages {
  stage(‘Cloning Git’) {
  steps {
- git([url: 'https://github.com/trapthy/codetest-javasb.git', branch: ‘main’])
+   git([url: 'https://github.com/trapthy/codetest-javasb.git', branch: ‘main’])
  }
-  
+ } 
  stage('Build Project') {
       // build project via maven
       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
