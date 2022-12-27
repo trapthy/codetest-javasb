@@ -6,6 +6,9 @@ pipeline {
 
  }
  agent any
+ tools {
+        maven "maven"
+    }
  stages {
    stage('Clone Repo') {
     steps{
@@ -14,11 +17,11 @@ pipeline {
     }   
    }
    }
-//  stage('Build Project') {
-//       steps{
-//       sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-//     }
-//  }
+ stage('Build Project') {
+      steps{
+      sh "mvn -Dmaven.test.failure.ignore clean package"
+    }
+ }
 //  stage('Building image') {
 //    steps{
 //      script {
