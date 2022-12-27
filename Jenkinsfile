@@ -17,25 +17,25 @@ pipeline {
     }
  }
  stage(‘Building image’) {
- steps{
- script {
- dockerImage = docker.build imagename
- }
- }
+   steps{
+     script {
+        dockerImage = docker.build imagename
+     }
+   }
  }
  stage(‘Running image’) {
- steps{
- script {
- sh “docker run ${imagename}:latest”
+    steps{
+      script {
+        sh "docker run ${imagename}:latest"
  }
  }
  }
  stage(‘Deploy Image’) {
- steps{
- script {
- docker.withRegistry( ‘’, registryCredential ) {
- dockerImage.push(“$BUILD_NUMBER”)
- dockerImage.push(‘latest’)
+    steps{
+      script {
+        docker.withRegistry( '', registryCredential ) {
+        dockerImage.push("$BUILD_NUMBER")
+        dockerImage.push('latest')
  }
  }
  }
