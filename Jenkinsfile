@@ -1,8 +1,8 @@
 pipeline {
  environment {
- imagename = “trapthyshetty/insead-demo”
- registryCredential = ‘dockerhub’
- dockerImage = ‘’
+ imagename = "trapthyshetty/insead-demo"
+ registryCredential = 'dockerhub'
+ dockerImage = ''
  def mvnHome = tool 'maven'
  }
  agent any
