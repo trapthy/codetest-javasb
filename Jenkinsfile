@@ -22,6 +22,13 @@ pipeline {
       sh "mvn clean package"
     }
  }
+  stage('Scan') {
+            steps { 
+                    snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api')
+          
+            }   
+        }
+
  stage('Building image') {
    steps{
      script {
