@@ -19,7 +19,7 @@ pipeline {
    }
  stage('Build Project') {
       steps{
-      sh "mvn -Dmaven.test.failure.ignore clean package"
+      sh "mvn clean package"
     }
  }
 //  stage('Building image') {
