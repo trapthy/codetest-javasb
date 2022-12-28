@@ -22,13 +22,13 @@ pipeline {
       sh "mvn clean package"
     }
  }
-//  stage('Building image') {
-//    steps{
-//      script {
-//         dockerImage = docker.build imagename
-//      }
-//    }
-//  }
+ stage('Building image') {
+   steps{
+     script {
+        dockerImage = docker.build imagename
+     }
+   }
+ }
 //  stage('Running image') {
 //     steps{
 //       script {
@@ -36,15 +36,15 @@ pipeline {
 //  }
 //  }
 //  }
-//  stage('Deploy Image') {
-//     steps{
-//       script {
-//         docker.withRegistry( '', registryCredential ) {
-//         dockerImage.push("$BUILD_NUMBER")
-//         dockerImage.push('latest')
-//  }
-//  }
-//  }
- //}
+ stage('Push Image') {
+    steps{
+      script {
+        docker.withRegistry( '', registryCredential ) {
+        dockerImage.push("$BUILD_NUMBER")
+        dockerImage.push('latest')
+ }
+ }
+ }
+ }
  }
 }
