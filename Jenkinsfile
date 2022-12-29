@@ -40,7 +40,7 @@ pipeline {
  stage('Scan image') {
     steps{
       script {
-        sh "docker scan ${imagename}:latest"
+        sh "snyk container test --file=/var/lib/jenkins/workspace/code-java/Dockerfile"
  }
  }
  }
