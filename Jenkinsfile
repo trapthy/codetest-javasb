@@ -38,6 +38,7 @@ pipeline {
    steps{
      script {
         dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        dockerImage = docker.tag "inseadecr:latest" "569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr:latest"
      }
    }
  }
