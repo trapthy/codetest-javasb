@@ -45,7 +45,7 @@ pipeline {
  stage('Push Image') {
     steps{
       script {
-        docker.withRegistry( 'https://569306433961.dkr.ecr.us-east-2.amazonaws.com', registryCredential  ) {
+        docker.withRegistry( 'https://569306433961.dkr.ecr.us-east-1.amazonaws.com', registryCredential  ) {
        // dockerImage.push("$BUILD_NUMBER")
         dockerImage.push('latest')
  }
