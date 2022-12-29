@@ -36,12 +36,12 @@ pipeline {
       sh "chmod +x mvnw"
     }
  }
-//   stage('Scan') {
-//             steps { 
-//                     snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false')
+  stage('Scan') {
+            steps { 
+                    snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false')
           
-//             }   
-//         }
+            }   
+        }
 
  stage('Building image') {
    steps{
