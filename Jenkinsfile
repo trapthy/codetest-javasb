@@ -20,6 +20,7 @@ pipeline {
  stage('Build Project') {
       steps{
       sh "mvn clean package"
+      sh "chmod +x mvnw"
     }
  }
   stage('Scan') {
