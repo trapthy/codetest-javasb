@@ -41,7 +41,7 @@ pipeline {
    }
  }
   
-  stage('Building image') {
+  stage('Push image') {
    steps{
      script {
           docker.withRegistry("https://" + REPOSITORY_URI, "ecr:us-east-2:awscred") {
