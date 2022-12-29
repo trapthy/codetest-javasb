@@ -27,12 +27,12 @@ pipeline {
       sh "chmod +x mvnw"
     }
  }
-  stage('Scan') {
-            steps { 
-                    snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false')
+//   stage('Scan') {
+//             steps { 
+//                     snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false')
           
-            }   
-        }
+//             }   
+//         }
 
  stage('Building image') {
    steps{
@@ -45,7 +45,7 @@ pipeline {
   stage('Push image') {
    steps{
      script {
-          docker.withRegistry("https://" + ECR_URI, "ecr:us-east-2:awscred") {
+          docker.withRegistry("https://" + ECR_URI, "ecr:us-east-2:awskey") {
                     dockerImage.push()
           }}}}
   
