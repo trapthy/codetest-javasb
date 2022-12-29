@@ -25,7 +25,7 @@ pipeline {
  }
   stage('Scan') {
             steps { 
-                    snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api')
+                    snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false')
           
             }   
         }
