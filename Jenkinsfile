@@ -39,9 +39,7 @@ pipeline {
  }
  stage('Scan image') {
     steps{
-      script {
-        sh "snyk container test --file=/var/lib/jenkins/workspace/code-java/Dockerfile"
- }
+       snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/code-java/Dockerfile')
  }
  }
  stage('Push Image') {
