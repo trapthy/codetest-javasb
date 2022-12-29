@@ -45,7 +45,7 @@ pipeline {
   stage('Push image') {
    steps{
      script {
-          docker.withRegistry("https://" + ECR_URI, "ecr:us-east-2:awskey") {
+          docker.withRegistry("https://" + ECR_URI, 'ecr:us-east-2:awskey') {
                     dockerImage.push()
           }}}}
   
