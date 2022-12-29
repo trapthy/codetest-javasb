@@ -1,7 +1,7 @@
 pipeline {
  environment {
- imagename = "trapthyshetty/insead-demo"
- registryCredential = 'dockerhub'
+ imagename = "public.ecr.aws/b9l4g7f1/inseadecr"
+ registryCredential = 'awscred'
  dockerImage = ''
 
  }
@@ -37,15 +37,15 @@ pipeline {
      }
    }
  }
- stage('Scan image') {
-    steps{
-       snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/code-java/Dockerfile')
- }
- }
+//  stage('Scan image') {
+//     steps{
+//        snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/code-java/Dockerfile')
+//  }
+//  }
  stage('Push Image') {
     steps{
       script {
-        docker.withRegistry( '', registryCredential ) {
+        docker.withRegistry( 'https://569306433961.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:awscred' ) {
         dockerImage.push("$BUILD_NUMBER")
         dockerImage.push('latest')
  }
