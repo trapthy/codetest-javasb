@@ -38,7 +38,7 @@ pipeline {
    steps{
      script {
         dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-        dockerImage = docker.tag "inseadecr:latest" "569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr:latest"
+       // dockerImage = docker.tag "inseadecr:latest" "569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr:latest"
      }
    }
  }
@@ -46,7 +46,7 @@ pipeline {
   stage('Push image') {
    steps{
      script {
-          docker.withRegistry("https://" + ECR_URI, 'ecr:us-east-2:awskey') {
+          withRegistry("https://" + ECR_URI, 'ecr:us-east-2:awskey') {
                     dockerImage.push()
           }}}}
   
