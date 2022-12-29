@@ -63,4 +63,4 @@ stage('Logging into AWS ECR') {
  }
  }
  }
-}
+
