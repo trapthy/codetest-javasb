@@ -37,13 +37,13 @@ pipeline {
      }
    }
  }
-//  stage('Running image') {
-//     steps{
-//       script {
-//         sh "docker run ${imagename}:latest"
-//  }
-//  }
-//  }
+ stage('Scan image') {
+    steps{
+      script {
+        sh "docker scan ${imagename}:latest"
+ }
+ }
+ }
  stage('Push Image') {
     steps{
       script {
