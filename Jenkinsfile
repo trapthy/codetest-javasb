@@ -1,11 +1,14 @@
 pipeline {
+ agent any
  environment {
- imagename = "569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr"
- registryCredential = 'ecr:us-east-2:awscred'
- dockerImage = ''
+  AWS_ACCOUNT_ID="569306433961"
+  AWS_DEFAULT_REGION="us-east-2"
+  IMAGE_REPO_NAME="inseadecr"
+  IMAGE_TAG="latest"
+  REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
 
  }
- agent any
+ 
  tools {
         maven "maven"
     }
@@ -33,10 +36,18 @@ pipeline {
  stage('Building image') {
    steps{
      script {
-        dockerImage = docker.build imagename
+        dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
      }
    }
  }
+  
+stage('Logging into AWS ECR') {
+  steps {
+    script {
+       sh "aws ecr get-login-password — region ${AWS_DEFAULT_REGION} | docker login — username AWS — password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+}
+  }
+}
 //  stage('Scan image') {
 //     steps{
 //        snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/code-java/Dockerfile')
@@ -45,9 +56,8 @@ pipeline {
  stage('Push Image') {
     steps{
       script {
-        docker.withRegistry( 'https://569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr', registryCredential) {
-       // dockerImage.push("$BUILD_NUMBER")
-        dockerImage.push()
+        sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
+        sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
  }
  }
  }
