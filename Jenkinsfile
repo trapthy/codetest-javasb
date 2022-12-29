@@ -6,6 +6,7 @@ pipeline {
   IMAGE_REPO_NAME="inseadecr"
   IMAGE_TAG="latest"
   REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+  ECR_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
 
  }
  
@@ -44,7 +45,7 @@ pipeline {
   stage('Push image') {
    steps{
      script {
-          docker.withRegistry("https://" + REPOSITORY_URI, "ecr:us-east-2:awscred") {
+          docker.withRegistry("https://" + ECR_URI, "ecr:us-east-2:awscred") {
                     dockerImage.push()
           }}}}
   
