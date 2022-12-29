@@ -4,7 +4,7 @@ pipeline {
   AWS_ACCOUNT_ID="569306433961"
   AWS_DEFAULT_REGION="us-east-2"
   IMAGE_REPO_NAME="inseadecr"
-  IMAGE_TAG="latest"
+  IMAGE_TAG="one"
   REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
   ECR_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
 
