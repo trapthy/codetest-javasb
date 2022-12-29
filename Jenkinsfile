@@ -1,7 +1,7 @@
 pipeline {
  environment {
  imagename = "569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr"
- registryCredential = 'awscred'
+ registryCredential = 'ecr:us-east-2:awscred'
  dockerImage = ''
 
  }
@@ -45,7 +45,7 @@ pipeline {
  stage('Push Image') {
     steps{
       script {
-        docker.withRegistry( 'https://569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr', 'ecr:us-east-2:awscred') {
+        docker.withRegistry( 'https://569306433961.dkr.ecr.us-east-2.amazonaws.com/inseadecr', registryCredential) {
        // dockerImage.push("$BUILD_NUMBER")
         dockerImage.push()
  }
