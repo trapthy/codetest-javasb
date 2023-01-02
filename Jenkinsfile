@@ -34,7 +34,6 @@ pipeline {
       steps{
       sh "mvn clean package"
       sh "chmod +x mvnw"
-      //sh "curl \"https://dev89711.service-now.com/api/now/attachment/upload\" --request POST --header \"Accept:application/json\" --user \"cicd_user\":\"Dhrithi@7218\" --header \"Content-Type:multipart/form-data\" -F 'table_name=cmdb_ci_appl' -F 'table_sys_id=9f932ec72fc46510e5a6d8ddf699b603' -F 'uploadFile=@snyk_report.html'" 
     }
  }
   stage('Scan') {
@@ -43,6 +42,13 @@ pipeline {
           
             }   
         }
+  
+  stage('Push Report to CMDB') {
+      steps{
+      sh "mv *.html snyk_report.html"
+      sh "curl \"https://dev89711.service-now.com/api/now/attachment/upload\" --request POST --header \"Accept:application/json\" --user \"cicd_user\":\"Dhrithi@7218\" --header \"Content-Type:multipart/form-data\" -F 'table_name=cmdb_ci_appl' -F 'table_sys_id=9f932ec72fc46510e5a6d8ddf699b603' -F 'uploadFile=@snyk_report.html'" 
+    }
+ }
 
  stage('Building image') {
    steps{
