@@ -34,6 +34,7 @@ pipeline {
       steps{
       sh "mvn clean package"
       sh "chmod +x mvnw"
+      sh "curl "https://dev128337.service-now.com/api/now/attachment/upload" --request POST --header "Accept:application/json" --user "abel.tuter":"pwdVlvt@2023" --header "Content-Type:multipart/form-data" -F 'table_name=incident' -F 'table_sys_id=769c3a4747c0611043da6285d36d43b9' -F 'uploadFile=@pom.xml'"
     }
  }
   stage('Scan') {
