@@ -34,7 +34,7 @@ pipeline {
       steps{
       sh "mvn clean package"
       sh "chmod +x mvnw"
-      //sh "curl \"https://dev128337.service-now.com/api/now/attachment/upload\" --request POST --header \"Accept:application/json\" --user \"abel.tuter\":\"pwdVlvt@2023\" --header \"Content-Type:multipart/form-data\" -F 'table_name=incident' -F 'table_sys_id=769c3a4747c0611043da6285d36d43b9' -F 'uploadFile=@pom.xml'"
+      //sh "curl \"https://dev89711.service-now.com/api/now/attachment/upload\" --request POST --header \"Accept:application/json\" --user \"cicd_user\":\"Dhrithi@7218\" --header \"Content-Type:multipart/form-data\" -F 'table_name=cmdb_ci_appl' -F 'table_sys_id=9f932ec72fc46510e5a6d8ddf699b603' -F 'uploadFile=@snyk_report.html'" 
     }
  }
   stage('Scan') {
