@@ -4,7 +4,7 @@ pipeline {
   AWS_ACCOUNT_ID="569306433961"
   AWS_DEFAULT_REGION="us-east-2"
   IMAGE_REPO_NAME="inseadecr"
-  IMAGE_TAG="one"
+  IMAGE_TAG="two"
   REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
   ECR_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
 
@@ -45,9 +45,9 @@ pipeline {
   
   stage('Push Report to CMDB') {
       steps{
-      sh " pwd"
-      sh "cd ./target && ls -lrt"
-      sh " ls -lrt"
+//       sh " pwd"
+//       sh "cd ./target && ls -lrt"
+//       sh " ls -lrt"
        sh "mv /var/lib/jenkins/jobs/codetest-java/builds/${BUILD_NUMBER}/archive/*.html ./snyk_report.html"
       sh "curl \"https://dev89711.service-now.com/api/now/attachment/upload\" --request POST --header \"Accept:application/json\" --user \"cicd_user\":\"Dhrithi@7218\" --header \"Content-Type:multipart/form-data\" -F 'table_name=cmdb_ci_appl' -F 'table_sys_id=9f932ec72fc46510e5a6d8ddf699b603' -F 'uploadFile=@snyk_report.html'" 
     }
@@ -70,11 +70,11 @@ pipeline {
 //           }}}}
   
 
-//  stage('Scan image') {
-//     steps{
-//        snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/code-java/Dockerfile')
-//  }
-//  }
+ stage('Scan image') {
+    steps{
+       snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/codetest-javasb/Dockerfile')
+ }
+ }
  stage('Push Image') {
     steps{
       script {
