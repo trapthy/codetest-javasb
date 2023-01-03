@@ -9,7 +9,7 @@
 [![Framework](https://img.shields.io/badge/Spring%20Boot-2.5.4-green)](https://spring.io/projects/spring-boot)
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/VishnuViswam/spring-boot-docker-basic/blob/main/LICENSE)
 
-## About Project
+## About Project details
  This is a simple spring boot application with the basic details of docker implementation.
 
 
