@@ -35,6 +35,14 @@ jobs:
       run: docker build . --file Dockerfile --tag trapthyshetty/demorepo:1
     - name: Publish Docker image
       run: docker push trapthyshetty/demorepo:1
+    - name: Snyk Container Test
+      continue-on-error: true
+      uses: snyk/actions/docker@master
+      env:
+        SNYK_TOKEN: ${{ Secrets.SNYK_TOKEN }}
+      with:
+        image: demorepo:1
+        args: --file=Dockerfile
 #     - name: Build and push Docker images
 #       uses: docker/build-push-action@v3.2.0
 #       with:
