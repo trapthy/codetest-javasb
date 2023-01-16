@@ -70,11 +70,11 @@ pipeline {
 //           }}}}
   
 
- stage('Scan image') {
-    steps{
-       snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/codetest-javasb/Dockerfile')
- }
- }
+//  stage('Scan image') {
+//     steps{
+//        snykSecurity ( snykInstallation: 'snyk@latest', snykTokenId: 'snyk-api', failOnIssues: 'false',  targetFile: '/var/lib/jenkins/workspace/codetest-javasb/Dockerfile')
+//  }
+//  }
  stage('Push Image') {
     steps{
       script {
